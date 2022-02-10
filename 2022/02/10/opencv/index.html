@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Panjose">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="学习opencv的资源，供参考。    1.1 photo1234import cv2img &#x3D; cv2.imread(&quot;resources&#x2F;lena.png&quot;)cv2.imshow(&quot;Output&quot;, img)cv2.waitKey(0) 1.2 video123456789import cv2cap &#x3D; cv2.VideoCapture(&quot;re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="study opencv -1">
+<meta property="og:url" content="http://example.com/2022/02/10/opencv/index.html">
+<meta property="og:site_name" content="Panjose&#39;s Blog">
+<meta property="og:description" content="学习opencv的资源，供参考。    1.1 photo1234import cv2img &#x3D; cv2.imread(&quot;resources&#x2F;lena.png&quot;)cv2.imshow(&quot;Output&quot;, img)cv2.waitKey(0) 1.2 video123456789import cv2cap &#x3D; cv2.VideoCapture(&quot;re">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-10T10:24:14.000Z">
+<meta property="article:modified_time" content="2022-02-10T12:08:39.140Z">
+<meta property="article:author" content="Panjose">
+<meta property="article:tag" content="opencv">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>study opencv -1 - Panjose&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/hint.css/2.7.0/hint.min.css" />
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+<link rel="stylesheet" href="/css/iconfont_Ttalk/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  
+
+<header>
+  <div class="header-inner" style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Panjose&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/talking/">
+                <i class="iconfont icon-T-talk"></i>
+                留言板
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jfif') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          <span id="subtitle" title="study opencv -1">
+            
+          </span>
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-10 18:24" pubdate>
+        2022年2月10日 晚上
+      </time>
+    </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+  </div>
+</header>
+
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">study opencv -1</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="学习opencv的资源，供参考。"><a href="#学习opencv的资源，供参考。" class="headerlink" title="学习opencv的资源，供参考。"></a>学习opencv的资源，供参考。</h1><html>
+<input type="button" value="学习网址链接" onclick='window.open("https://www.bilibili.com/video/BV1HV411r7Fi?from=search&seid=12311632355312709646&spm_id_from=333.337.0.0")' />
+</html>
+
+<h2 id="1-1-photo"><a href="#1-1-photo" class="headerlink" title="1.1 photo"></a>1.1 photo</h2><figure class="highlight python"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br>img = cv2.imread(<span class="hljs-string">&quot;resources/lena.png&quot;</span>)<br>cv2.imshow(<span class="hljs-string">&quot;Output&quot;</span>, img)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="1-2-video"><a href="#1-2-video" class="headerlink" title="1.2 video"></a>1.2 video</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><br>cap = cv2.VideoCapture(<span class="hljs-string">&quot;resources/test_video.mp4&quot;</span>)<br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    success, img = cap.read()<br>    cv2.imshow(<span class="hljs-string">&quot;Video&quot;</span>, img)<br>    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xFF</span> == <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;q&#x27;</span>):<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<h2 id="1-3-camera"><a href="#1-3-camera" class="headerlink" title="1.3 camera"></a>1.3 camera</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><br>cap = cv2.VideoCapture(<span class="hljs-number">0</span>)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">3</span>, <span class="hljs-number">640</span>)             <span class="hljs-comment"># 宽度</span><br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">4</span>, <span class="hljs-number">480</span>)             <span class="hljs-comment"># 高度</span><br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)             <span class="hljs-comment"># 亮度</span><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    success, img = cap.read()<br>    cv2.imshow(<span class="hljs-string">&quot;Video&quot;</span>, img)<br>    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xFF</span> == <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;q&#x27;</span>):<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<h2 id="2-1-basic-function"><a href="#2-1-basic-function" class="headerlink" title="2.1 basic function"></a>2.1 basic function</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>img = cv2.imread(<span class="hljs-string">&quot;resources/lena.png&quot;</span>)<br>kernel = np.ones((<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), np.uint8)<br><br>imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br><span class="hljs-comment"># 变灰色</span><br>imgBlur = cv2.GaussianBlur(imgGray, (<span class="hljs-number">7</span>, <span class="hljs-number">7</span>), <span class="hljs-number">0</span>)<br><span class="hljs-comment"># 模糊：（&#x27;7,7&#x27;：必须是奇数，两个值要相同）</span><br>imgCanny = cv2.Canny(img, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>)<br><span class="hljs-comment"># 扣轮廓：（数值越大轮廓越少）</span><br>imgDialation = cv2.dilate(imgCanny, kernel, iterations=<span class="hljs-number">1</span>)<br><span class="hljs-comment"># 膨胀</span><br>imgEroded = cv2.erode(imgDialation,kernel,iterations=<span class="hljs-number">1</span>)<br><span class="hljs-comment"># 腐蚀</span><br><br>cv2.imshow(<span class="hljs-string">&quot;Grey Image&quot;</span>, imgGray)<br>cv2.imshow(<span class="hljs-string">&quot;Blur Image&quot;</span>, imgBlur)<br>cv2.imshow(<span class="hljs-string">&quot;Canny Image&quot;</span>, imgCanny)<br>cv2.imshow(<span class="hljs-string">&quot;Dialation Image&quot;</span>, imgDialation)<br>cv2.imshow(<span class="hljs-string">&quot;Eroded Image&quot;</span>, imgEroded)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="3-1-opencv-conversion"><a href="#3-1-opencv-conversion" class="headerlink" title="3.1 opencv conversion"></a>3.1 opencv conversion</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>img = cv2.imread(<span class="hljs-string">&quot;resources/lambo.PNG&quot;</span>)<br><span class="hljs-built_in">print</span>(img.shape)<br><br>imgResize = cv2.resize(img, (<span class="hljs-number">300</span>, <span class="hljs-number">200</span>))<br><span class="hljs-built_in">print</span>(imgResize.shape)<br><br>imgCropped = img[<span class="hljs-number">0</span>:<span class="hljs-number">200</span>, <span class="hljs-number">200</span>:<span class="hljs-number">500</span>]<br><br>cv2.imshow(<span class="hljs-string">&quot;Image&quot;</span>, img)<br>cv2.imshow(<span class="hljs-string">&quot;Image Resize&quot;</span>, imgResize)<br>cv2.imshow(<span class="hljs-string">&quot;Image Cropped&quot;</span>, imgCropped)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="4-1-shapes-and-texts"><a href="#4-1-shapes-and-texts" class="headerlink" title="4.1 shapes and texts"></a>4.1 shapes and texts</h2><h3 id="填充矩形"><a href="#填充矩形" class="headerlink" title="填充矩形"></a>填充矩形</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>img = np.zeros((<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, <span class="hljs-number">3</span>), np.uint8)<br>img[<span class="hljs-number">200</span>:<span class="hljs-number">300</span>,<span class="hljs-number">100</span>:<span class="hljs-number">300</span>] = <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>cv2.imshow(<span class="hljs-string">&quot;Image&quot;</span>,img)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>img = np.zeros((<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, <span class="hljs-number">3</span>), np.uint8)<br>cv2.line(img, (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), (img.shape[<span class="hljs-number">1</span>], img.shape[<span class="hljs-number">0</span>]), (<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), <span class="hljs-number">3</span>)<br>cv2.imshow(<span class="hljs-string">&quot;Image&quot;</span>,img)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>cv2.rectangle(img, (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), (<span class="hljs-number">250</span>, <span class="hljs-number">300</span>), (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>), <span class="hljs-number">5</span>)<br>cv2.rectangle(img, (<span class="hljs-number">250</span>, <span class="hljs-number">300</span>), (img.shape[<span class="hljs-number">1</span>], img.shape[<span class="hljs-number">0</span>]), (<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), cv2.FILLED)<br>cv2.imshow(<span class="hljs-string">&quot;Image&quot;</span>, img)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="画圆"><a href="#画圆" class="headerlink" title="画圆"></a>画圆</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>cv2.circle(img, (<span class="hljs-number">400</span>, <span class="hljs-number">50</span>), <span class="hljs-number">30</span>, (<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), <span class="hljs-number">5</span>)<br>cv2.imshow(<span class="hljs-string">&quot;Image&quot;</span>, img)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="打字"><a href="#打字" class="headerlink" title="打字"></a>打字</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>cv2.putText(img, <span class="hljs-string">&quot; OPENCV &quot;</span>, (<span class="hljs-number">300</span>, <span class="hljs-number">200</span>), cv2.FONT_HERSHEY_COMPLEX, <span class="hljs-number">1</span>, (<span class="hljs-number">0</span>, <span class="hljs-number">150</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>)<br>cv2.imshow(<span class="hljs-string">&quot;Image&quot;</span>, img)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="5-1-warp-prespective"><a href="#5-1-warp-prespective" class="headerlink" title="5.1 warp prespective"></a>5.1 warp prespective</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>img = cv2.imread(<span class="hljs-string">&quot;resources/cards.jpg&quot;</span>)<br><br>width, height = <span class="hljs-number">250</span>, <span class="hljs-number">350</span><br>pts1 = np.float32([[<span class="hljs-number">118</span>, <span class="hljs-number">227</span>], [<span class="hljs-number">299</span>, <span class="hljs-number">195</span>], [<span class="hljs-number">158</span>, <span class="hljs-number">505</span>], [<span class="hljs-number">369</span>, <span class="hljs-number">460</span>]])<br>pts2 = np.float32([[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [width, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, height], [width, height]])<br>matrix = cv2.getPerspectiveTransform(pts1, pts2)<br>imgOutput = cv2.warpPerspective(img, matrix, (width, height))<br><br>cv2.imshow(<span class="hljs-string">&quot;Image&quot;</span>, img)<br>cv2.imshow(<span class="hljs-string">&quot;Output&quot;</span>,imgOutput)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="6-1-joining-images-1"><a href="#6-1-joining-images-1" class="headerlink" title="6.1 joining images-1"></a>6.1 joining images-1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>img = cv2.imread(<span class="hljs-string">&quot;resources/lena.png&quot;</span>)<br>imgHor = np.hstack((img, img))<br>imgVer = np.vstack((img, img))<br><br>cv2.imshow(<span class="hljs-string">&quot;Horizontal&quot;</span>, imgHor)<br>cv2.imshow(<span class="hljs-string">&quot;Vertical&quot;</span>, imgVer)<br><br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="6-2-joining-images-2"><a href="#6-2-joining-images-2" class="headerlink" title="6.2 joining images-2"></a>6.2 joining images-2</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stackImages</span>(<span class="hljs-params">scale, imgArray</span>):<br>    rows = <span class="hljs-built_in">len</span>(imgArray)<br>    cols = <span class="hljs-built_in">len</span>(imgArray[<span class="hljs-number">0</span>])<br>    <span class="hljs-comment"># 输出一个 rows * cols 的矩阵（imgArray）</span><br>    <span class="hljs-built_in">print</span>(rows, cols)<br>    <span class="hljs-comment"># 判断imgArray[0] 是不是一个list</span><br>    rowsAvailable = <span class="hljs-built_in">isinstance</span>(imgArray[<span class="hljs-number">0</span>], <span class="hljs-built_in">list</span>)<br>    <span class="hljs-comment"># imgArray[0][0]就是指[0,0]的那个图片（我们把图片集分为二维矩阵，第一行、第一列的那个就是第一个图片）</span><br>    <span class="hljs-comment"># 而shape[1]就是width，shape[0]是height，shape[2]是</span><br>    width = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>]<br>    height = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]<br>    cv2.imshow(<span class="hljs-string">&quot;img&quot;</span>, imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>])<br>    <span class="hljs-keyword">if</span> rowsAvailable:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, cols):<br>                <span class="hljs-comment"># 判断图像与后面那个图像的形状是否一致，若一致则进行等比例放缩；否则，先resize为一致，后进行放缩</span><br>                <span class="hljs-keyword">if</span> imgArray[x][y].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">else</span>:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]),<br>                                                <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-comment"># 如果是灰度图，则变成RGB图像（为了弄成一样的图像）</span><br>                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x][y].shape) == <span class="hljs-number">2</span>: imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)<br>        <span class="hljs-comment"># 设置零矩阵</span><br>        imageBlank = np.zeros((height, width, <span class="hljs-number">3</span>), np.uint8)<br>        hor = [imageBlank] * rows<br>        hor_con = [imageBlank] * rows<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            hor[x] = np.hstack(imgArray[x])<br>        ver = np.vstack(hor)<br>    <span class="hljs-comment"># &amp; 如果不是一组照片，则仅仅进行放缩 or 灰度转化为RGB</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">if</span> imgArray[x].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                imgArray[x] = cv2.resize(imgArray[x], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">else</span>:<br>                imgArray[x] = cv2.resize(imgArray[x], (imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x].shape) == <span class="hljs-number">2</span>: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)<br>        hor = np.hstack(imgArray)<br>        ver = hor<br>    <span class="hljs-keyword">return</span> ver<br><br>img = cv2.imread(<span class="hljs-string">&quot;Resources/lena.png&quot;</span>)<br>imgStack = stackImages(<span class="hljs-number">0.5</span>, ([img, img, img], [img, img, img]))<br>cv2.imshow(<span class="hljs-string">&quot;stackImages&quot;</span>, imgStack)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="7-1-color-detection"><a href="#7-1-color-detection" class="headerlink" title="7.1 color detection"></a>7.1 color detection</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stackImages</span>(<span class="hljs-params">scale, imgArray</span>):<br>    rows = <span class="hljs-built_in">len</span>(imgArray)<br>    cols = <span class="hljs-built_in">len</span>(imgArray[<span class="hljs-number">0</span>])<br>    <span class="hljs-built_in">print</span>(rows, cols)<br>    rowsAvailable = <span class="hljs-built_in">isinstance</span>(imgArray[<span class="hljs-number">0</span>], <span class="hljs-built_in">list</span>)<br>    width = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>]<br>    height = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]<br><br>    <span class="hljs-keyword">if</span> rowsAvailable:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, cols):<br>                <span class="hljs-keyword">if</span> imgArray[x][y].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">else</span>:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]),<br>                                                <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x][y].shape) == <span class="hljs-number">2</span>: imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)<br>        imageBlank = np.zeros((height, width, <span class="hljs-number">3</span>), np.uint8)<br>        hor = [imageBlank] * rows<br>        hor_con = [imageBlank] * rows<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            hor[x] = np.hstack(imgArray[x])<br>        ver = np.vstack(hor)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">if</span> imgArray[x].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                imgArray[x] = cv2.resize(imgArray[x], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">else</span>:<br>                imgArray[x] = cv2.resize(imgArray[x], (imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x].shape) == <span class="hljs-number">2</span>: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)<br>        hor = np.hstack(imgArray)<br>        ver = hor<br>    <span class="hljs-keyword">return</span> ver<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">empty</span>(<span class="hljs-params">a</span>):<br>    <span class="hljs-keyword">pass</span><br><br><br>cv2.namedWindow(<span class="hljs-string">&quot;TrackBars&quot;</span>)<br>cv2.resizeWindow(<span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">640</span>, <span class="hljs-number">240</span>)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Hue Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">179</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Hue Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">19</span>, <span class="hljs-number">179</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Sat Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">110</span>, <span class="hljs-number">255</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Sat Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">240</span>, <span class="hljs-number">255</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Val Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">153</span>, <span class="hljs-number">255</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Val Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, empty)<br><span class="hljs-comment"># 建立滑动窗口</span><br><br>path = <span class="hljs-string">&quot;resources/lambo.PNG&quot;</span><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    img = cv2.imread(path)<br>    imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)<br>    h_min = cv2.getTrackbarPos(<span class="hljs-string">&quot;Hue Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    h_max = cv2.getTrackbarPos(<span class="hljs-string">&quot;Hue Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    s_min = cv2.getTrackbarPos(<span class="hljs-string">&quot;Sat Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    s_max = cv2.getTrackbarPos(<span class="hljs-string">&quot;Sat Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    v_min = cv2.getTrackbarPos(<span class="hljs-string">&quot;Val Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    v_max = cv2.getTrackbarPos(<span class="hljs-string">&quot;Val Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    <span class="hljs-built_in">print</span>(h_min, h_max, s_min, s_max, v_min, v_max)<br>    lower = np.array([h_min, s_min, v_min])<br>    upper = np.array([h_max, s_max, v_max])<br>    mask = cv2.inRange(imgHSV, lower, upper)<br>    imgResult = cv2.bitwise_and(img, img, mask=mask)<br><br>    imgStack = stackImages(<span class="hljs-number">0.6</span>, ([img, imgHSV], [mask, imgResult]))<br>    cv2.imshow(<span class="hljs-string">&quot;Stacked Images&quot;</span>, imgStack)<br><br>    <span class="hljs-comment"># cv2.imshow(&quot;Original&quot;, img)</span><br>    <span class="hljs-comment"># cv2.imshow(&quot;HSV&quot;, imgHSV)</span><br>    <span class="hljs-comment"># cv2.imshow(&quot;MASK&quot;, mask)</span><br>    <span class="hljs-comment"># cv2.imshow(&quot;Result&quot;, imgResult)</span><br><br>    cv2.waitKey(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="8-1-shape-detection"><a href="#8-1-shape-detection" class="headerlink" title="8.1 shape detection"></a>8.1 shape detection</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stackImages</span>(<span class="hljs-params">scale, imgArray</span>):<br>    rows = <span class="hljs-built_in">len</span>(imgArray)<br>    cols = <span class="hljs-built_in">len</span>(imgArray[<span class="hljs-number">0</span>])<br>    rowsAvailable = <span class="hljs-built_in">isinstance</span>(imgArray[<span class="hljs-number">0</span>], <span class="hljs-built_in">list</span>)<br>    width = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>]<br>    height = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">if</span> rowsAvailable:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, cols):<br>                <span class="hljs-keyword">if</span> imgArray[x][y].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">else</span>:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]),<br>                                                <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x][y].shape) == <span class="hljs-number">2</span>: imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)<br>        imageBlank = np.zeros((height, width, <span class="hljs-number">3</span>), np.uint8)<br>        hor = [imageBlank] * rows<br>        hor_con = [imageBlank] * rows<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            hor[x] = np.hstack(imgArray[x])<br>        ver = np.vstack(hor)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">if</span> imgArray[x].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                imgArray[x] = cv2.resize(imgArray[x], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">else</span>:<br>                imgArray[x] = cv2.resize(imgArray[x], (imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x].shape) == <span class="hljs-number">2</span>: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)<br>        hor = np.hstack(imgArray)<br>        ver = hor<br>    <span class="hljs-keyword">return</span> ver<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getContours</span>(<span class="hljs-params">img</span>):<br>    contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)<br>    <span class="hljs-keyword">for</span> cnt <span class="hljs-keyword">in</span> contours:<br>        area = cv2.contourArea(cnt)<br>        <span class="hljs-built_in">print</span>(area)<br>        <span class="hljs-keyword">if</span> area &gt; <span class="hljs-number">500</span>:<br>            cv2.drawContours(imgContour, cnt, -<span class="hljs-number">1</span>, (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-number">3</span>)<br>            peri = cv2.arcLength(cnt, <span class="hljs-literal">True</span>)<br>            <span class="hljs-comment"># print(peri)</span><br>            approx = cv2.approxPolyDP(cnt, <span class="hljs-number">0.02</span> * peri, <span class="hljs-literal">True</span>)<br>            <span class="hljs-comment"># print(len(approx))</span><br>            objCor = <span class="hljs-built_in">len</span>(approx)<br>            x, y, w, h = cv2.boundingRect(approx)<br><br>            <span class="hljs-keyword">if</span> objCor == <span class="hljs-number">3</span>:<br>                objectType = <span class="hljs-string">&quot;Tri&quot;</span><br>            <span class="hljs-keyword">elif</span> objCor == <span class="hljs-number">4</span>:<br>                aspRatio = w / <span class="hljs-built_in">float</span>(h)<br>                <span class="hljs-keyword">if</span> <span class="hljs-number">0.95</span> &lt; aspRatio &lt; <span class="hljs-number">1.05</span>:<br>                    objectType = <span class="hljs-string">&quot;Square&quot;</span><br>                <span class="hljs-keyword">else</span>:<br>                    objectType = <span class="hljs-string">&quot;Rectangle&quot;</span><br>            <span class="hljs-keyword">elif</span> objCor &gt; <span class="hljs-number">4</span>:<br>                objectType = <span class="hljs-string">&quot;Circles&quot;</span><br>            <span class="hljs-keyword">else</span>:<br>                objectType = <span class="hljs-string">&quot;None&quot;</span><br><br>            cv2.rectangle(imgContour, (x, y), (x + w, y + h), (<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>)<br>            cv2.putText(imgContour, objectType,<br>                        (x + (w // <span class="hljs-number">2</span>) - <span class="hljs-number">10</span>, y + (h // <span class="hljs-number">2</span>) - <span class="hljs-number">10</span>), cv2.FONT_HERSHEY_COMPLEX, <span class="hljs-number">0.7</span>,<br>                        (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>)<br><br><br>path = <span class="hljs-string">&#x27;Resources/shapes.png&#x27;</span><br>img = cv2.imread(path)<br>imgContour = img.copy()<br><br>imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br>imgBlur = cv2.GaussianBlur(imgGray, (<span class="hljs-number">7</span>, <span class="hljs-number">7</span>), <span class="hljs-number">1</span>)<br>imgCanny = cv2.Canny(imgBlur, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>)<br>getContours(imgCanny)<br><br>imgBlank = np.zeros_like(img)<br>imgStack = stackImages(<span class="hljs-number">0.8</span>, ([img, imgGray, imgBlur],<br>                              [imgCanny, imgContour, imgBlank]))<br><br>cv2.imshow(<span class="hljs-string">&quot;Stack&quot;</span>, imgStack)<br><br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="9-1-face-detection"><a href="#9-1-face-detection" class="headerlink" title="9.1 face detection"></a>9.1 face detection</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><br>faceCascade = cv2.CascadeClassifier(<span class="hljs-string">&quot;Resources/haarcascade_frontalface_default.xml&quot;</span>)<br>img = cv2.imread(<span class="hljs-string">&#x27;Resources/lena.png&#x27;</span>)<br>imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br><br>faces = faceCascade.detectMultiScale(imgGray, <span class="hljs-number">1.1</span>, <span class="hljs-number">4</span>)<br><br><span class="hljs-keyword">for</span> (x, y, w, h) <span class="hljs-keyword">in</span> faces:<br>    cv2.rectangle(img, (x, y), (x + w, y + h), (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>)<br><br>cv2.imshow(<span class="hljs-string">&quot;Result&quot;</span>, img)<br>cv2.waitKey(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="10-1-project-virtual-paint"><a href="#10-1-project-virtual-paint" class="headerlink" title="10.1 project-virtual paint"></a>10.1 project-virtual paint</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>frameWidth = <span class="hljs-number">640</span><br>frameHeight = <span class="hljs-number">480</span><br>cap = cv2.VideoCapture(<span class="hljs-number">0</span>)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">3</span>, frameWidth)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">4</span>, frameHeight)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">10</span>, <span class="hljs-number">150</span>)<br><br>myColors = [[<span class="hljs-number">5</span>, <span class="hljs-number">107</span>, <span class="hljs-number">0</span>, <span class="hljs-number">19</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>],<br>            [<span class="hljs-number">133</span>, <span class="hljs-number">56</span>, <span class="hljs-number">0</span>, <span class="hljs-number">159</span>, <span class="hljs-number">156</span>, <span class="hljs-number">255</span>],<br>            [<span class="hljs-number">57</span>, <span class="hljs-number">76</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>],<br>            [<span class="hljs-number">90</span>, <span class="hljs-number">48</span>, <span class="hljs-number">0</span>, <span class="hljs-number">118</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>]]<br>myColorValues = [[<span class="hljs-number">51</span>, <span class="hljs-number">153</span>, <span class="hljs-number">255</span>],  <span class="hljs-comment">## BGR</span><br>                 [<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>],<br>                 [<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>],<br>                 [<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]<br><br>myPoints = []  <span class="hljs-comment">## [x , y , colorId ]</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">findColor</span>(<span class="hljs-params">img, myColors, myColorValues</span>):<br>    imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)<br>    count = <span class="hljs-number">0</span><br>    newPoints = []<br>    <span class="hljs-keyword">for</span> color <span class="hljs-keyword">in</span> myColors:<br>        lower = np.array(color[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>])<br>        upper = np.array(color[<span class="hljs-number">3</span>:<span class="hljs-number">6</span>])<br>        mask = cv2.inRange(imgHSV, lower, upper)<br>        x, y = getContours(mask)<br>        cv2.circle(imgResult, (x, y), <span class="hljs-number">15</span>, myColorValues[count], cv2.FILLED)<br>        <span class="hljs-keyword">if</span> x != <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> y != <span class="hljs-number">0</span>:<br>            newPoints.append([x, y, count])<br>        count += <span class="hljs-number">1</span><br>        <span class="hljs-comment"># cv2.imshow(str(color[0]),mask)</span><br>    <span class="hljs-keyword">return</span> newPoints<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getContours</span>(<span class="hljs-params">img</span>):<br>    contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)<br>    x, y, w, h = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> cnt <span class="hljs-keyword">in</span> contours:<br>        area = cv2.contourArea(cnt)<br>        <span class="hljs-keyword">if</span> area &gt; <span class="hljs-number">500</span>:<br>            <span class="hljs-comment"># cv2.drawContours(imgResult, cnt, -1, (255, 0, 0), 3)</span><br>            peri = cv2.arcLength(cnt, <span class="hljs-literal">True</span>)<br>            approx = cv2.approxPolyDP(cnt, <span class="hljs-number">0.02</span> * peri, <span class="hljs-literal">True</span>)<br>            x, y, w, h = cv2.boundingRect(approx)<br>    <span class="hljs-keyword">return</span> x + w // <span class="hljs-number">2</span>, y<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">drawOnCanvas</span>(<span class="hljs-params">myPoints, myColorValues</span>):<br>    <span class="hljs-keyword">for</span> point <span class="hljs-keyword">in</span> myPoints:<br>        cv2.circle(imgResult, (point[<span class="hljs-number">0</span>], point[<span class="hljs-number">1</span>]), <span class="hljs-number">10</span>, myColorValues[point[<span class="hljs-number">2</span>]], cv2.FILLED)<br><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    success, img = cap.read()<br>    imgResult = img.copy()<br>    newPoints = findColor(img, myColors, myColorValues)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(newPoints) != <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">for</span> newP <span class="hljs-keyword">in</span> newPoints:<br>            myPoints.append(newP)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(myPoints) != <span class="hljs-number">0</span>:<br>        drawOnCanvas(myPoints, myColorValues)<br><br>    cv2.imshow(<span class="hljs-string">&quot;Result&quot;</span>, imgResult)<br>    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xFF</span> == <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;q&#x27;</span>):<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<h2 id="10-2-project1-test"><a href="#10-2-project1-test" class="headerlink" title="10.2 project1-test"></a>10.2 project1-test</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stackImages</span>(<span class="hljs-params">scale, imgArray</span>):<br>    rows = <span class="hljs-built_in">len</span>(imgArray)<br>    cols = <span class="hljs-built_in">len</span>(imgArray[<span class="hljs-number">0</span>])<br>    <span class="hljs-built_in">print</span>(rows, cols)<br>    rowsAvailable = <span class="hljs-built_in">isinstance</span>(imgArray[<span class="hljs-number">0</span>], <span class="hljs-built_in">list</span>)<br>    width = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>]<br>    height = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]<br><br>    <span class="hljs-keyword">if</span> rowsAvailable:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, cols):<br>                <span class="hljs-keyword">if</span> imgArray[x][y].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">else</span>:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]),<br>                                                <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x][y].shape) == <span class="hljs-number">2</span>: imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)<br>        imageBlank = np.zeros((height, width, <span class="hljs-number">3</span>), np.uint8)<br>        hor = [imageBlank] * rows<br>        hor_con = [imageBlank] * rows<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            hor[x] = np.hstack(imgArray[x])<br>        ver = np.vstack(hor)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">if</span> imgArray[x].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                imgArray[x] = cv2.resize(imgArray[x], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">else</span>:<br>                imgArray[x] = cv2.resize(imgArray[x], (imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x].shape) == <span class="hljs-number">2</span>: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)<br>        hor = np.hstack(imgArray)<br>        ver = hor<br>    <span class="hljs-keyword">return</span> ver<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">empty</span>(<span class="hljs-params">a</span>):<br>    <span class="hljs-keyword">pass</span><br><br><br>cv2.namedWindow(<span class="hljs-string">&quot;TrackBars&quot;</span>)<br>cv2.resizeWindow(<span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">640</span>, <span class="hljs-number">240</span>)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Hue Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">179</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Hue Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">19</span>, <span class="hljs-number">179</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Sat Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">110</span>, <span class="hljs-number">255</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Sat Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">240</span>, <span class="hljs-number">255</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Val Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">153</span>, <span class="hljs-number">255</span>, empty)<br>cv2.createTrackbar(<span class="hljs-string">&quot;Val Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, empty)<br><span class="hljs-comment"># 建立滑动窗口</span><br><br><br>cap = cv2.VideoCapture(<span class="hljs-number">0</span>)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">3</span>, <span class="hljs-number">640</span>)  <span class="hljs-comment"># 宽度</span><br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">4</span>, <span class="hljs-number">480</span>)  <span class="hljs-comment"># 高度</span><br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">10</span>, <span class="hljs-number">100</span>)  <span class="hljs-comment"># 亮度</span><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    success, img = cap.read()<br>    cv2.imshow(<span class="hljs-string">&quot;Video&quot;</span>, img)<br><br>    imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)<br>    h_min = cv2.getTrackbarPos(<span class="hljs-string">&quot;Hue Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    h_max = cv2.getTrackbarPos(<span class="hljs-string">&quot;Hue Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    s_min = cv2.getTrackbarPos(<span class="hljs-string">&quot;Sat Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    s_max = cv2.getTrackbarPos(<span class="hljs-string">&quot;Sat Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    v_min = cv2.getTrackbarPos(<span class="hljs-string">&quot;Val Min&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    v_max = cv2.getTrackbarPos(<span class="hljs-string">&quot;Val Max&quot;</span>, <span class="hljs-string">&quot;TrackBars&quot;</span>)<br>    <span class="hljs-built_in">print</span>(h_min, h_max, s_min, s_max, v_min, v_max)<br>    lower = np.array([h_min, s_min, v_min])<br>    upper = np.array([h_max, s_max, v_max])<br>    mask = cv2.inRange(imgHSV, lower, upper)<br>    imgResult = cv2.bitwise_and(img, img, mask=mask)<br><br>    imgStack = stackImages(<span class="hljs-number">0.6</span>, ([img, imgHSV], [mask, imgResult]))<br>    cv2.imshow(<span class="hljs-string">&quot;Stacked Images&quot;</span>, imgStack)<br><br>    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xFF</span> == <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;q&#x27;</span>):<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<h2 id="11-1-project2-document-scanner"><a href="#11-1-project2-document-scanner" class="headerlink" title="11.1 project2-document scanner"></a>11.1 project2-document scanner</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>widthImg = <span class="hljs-number">540</span><br>heightImg = <span class="hljs-number">640</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">preProcessing</span>(<span class="hljs-params">img</span>):<br>    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br>    imgBlur = cv2.GaussianBlur(imgGray, (<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), <span class="hljs-number">1</span>)<br>    imgCanny = cv2.Canny(imgBlur, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)<br>    kernel = np.ones((<span class="hljs-number">5</span>, <span class="hljs-number">5</span>))<br>    imgDial = cv2.dilate(imgCanny, kernel, iterations=<span class="hljs-number">2</span>)<br>    imgThres = cv2.erode(imgDial, kernel, iterations=<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> imgThres<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getContours</span>(<span class="hljs-params">img</span>):<br>    biggest = np.array([])<br>    maxArea = <span class="hljs-number">0</span><br>    contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)<br>    <span class="hljs-keyword">for</span> cnt <span class="hljs-keyword">in</span> contours:<br>        area = cv2.contourArea(cnt)<br>        <span class="hljs-keyword">if</span> area &gt; <span class="hljs-number">5000</span>:<br>            <span class="hljs-comment"># cv2.drawContours(imgContour, cnt, -1, (255, 0, 0), 3)</span><br>            peri = cv2.arcLength(cnt, <span class="hljs-literal">True</span>)<br>            approx = cv2.approxPolyDP(cnt, <span class="hljs-number">0.02</span> * peri, <span class="hljs-literal">True</span>)<br>            <span class="hljs-keyword">if</span> area &gt; maxArea <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(approx) == <span class="hljs-number">4</span>:<br>                biggest = approx<br>                maxArea = area<br>    cv2.drawContours(imgContour, biggest, -<span class="hljs-number">1</span>, (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-number">20</span>)<br>    <span class="hljs-keyword">return</span> biggest<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">reorder</span>(<span class="hljs-params">myPoints</span>):<br>    myPoints = myPoints.reshape((<span class="hljs-number">4</span>, <span class="hljs-number">2</span>))<br>    myPointsNew = np.zeros((<span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), np.int32)<br>    add = myPoints.<span class="hljs-built_in">sum</span>(<span class="hljs-number">1</span>)<br>    <span class="hljs-comment"># print(&quot;add&quot;, add)</span><br>    myPointsNew[<span class="hljs-number">0</span>] = myPoints[np.argmin(add)]<br>    myPointsNew[<span class="hljs-number">3</span>] = myPoints[np.argmax(add)]<br>    diff = np.diff(myPoints, axis=<span class="hljs-number">1</span>)<br>    myPointsNew[<span class="hljs-number">1</span>] = myPoints[np.argmin(diff)]<br>    myPointsNew[<span class="hljs-number">2</span>] = myPoints[np.argmax(diff)]<br>    <span class="hljs-comment"># print(&quot;NewPoints&quot;,myPointsNew)</span><br>    <span class="hljs-keyword">return</span> myPointsNew<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getWarp</span>(<span class="hljs-params">img, biggest</span>):<br>    biggest = reorder(biggest)<br>    pts1 = np.float32(biggest)<br>    pts2 = np.float32([[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [widthImg, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, heightImg], [widthImg, heightImg]])<br>    matrix = cv2.getPerspectiveTransform(pts1, pts2)<br>    imgOutput = cv2.warpPerspective(img, matrix, (widthImg, heightImg))<br><br>    imgCropped = imgOutput[<span class="hljs-number">20</span>:imgOutput.shape[<span class="hljs-number">0</span>] - <span class="hljs-number">20</span>, <span class="hljs-number">20</span>:imgOutput.shape[<span class="hljs-number">1</span>] - <span class="hljs-number">20</span>]<br>    imgCropped = cv2.resize(imgCropped, (widthImg, heightImg))<br><br>    <span class="hljs-keyword">return</span> imgCropped<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stackImages</span>(<span class="hljs-params">scale, imgArray</span>):<br>    rows = <span class="hljs-built_in">len</span>(imgArray)<br>    cols = <span class="hljs-built_in">len</span>(imgArray[<span class="hljs-number">0</span>])<br>    rowsAvailable = <span class="hljs-built_in">isinstance</span>(imgArray[<span class="hljs-number">0</span>], <span class="hljs-built_in">list</span>)<br>    width = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>]<br>    height = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">if</span> rowsAvailable:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, cols):<br>                <span class="hljs-keyword">if</span> imgArray[x][y].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">else</span>:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]),<br>                                                <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x][y].shape) == <span class="hljs-number">2</span>: imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)<br>        imageBlank = np.zeros((height, width, <span class="hljs-number">3</span>), np.uint8)<br>        hor = [imageBlank] * rows<br>        hor_con = [imageBlank] * rows<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            hor[x] = np.hstack(imgArray[x])<br>        ver = np.vstack(hor)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">if</span> imgArray[x].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                imgArray[x] = cv2.resize(imgArray[x], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">else</span>:<br>                imgArray[x] = cv2.resize(imgArray[x], (imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x].shape) == <span class="hljs-number">2</span>: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)<br>        hor = np.hstack(imgArray)<br>        ver = hor<br>    <span class="hljs-keyword">return</span> ver<br><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    <span class="hljs-comment"># img = cv2.imread(&#x27;Resources/paper.jpg&#x27;)</span><br>    img = cv2.imread(<span class="hljs-string">&#x27;Resources/1.jpg&#x27;</span>)<br>    img = cv2.resize(img, (widthImg, heightImg))<br>    imgContour = img.copy()<br><br>    imgThres = preProcessing(img)<br>    biggest = getContours(imgThres)<br>    <span class="hljs-keyword">if</span> biggest.size != <span class="hljs-number">0</span>:<br>        imgWarped = getWarp(img, biggest)<br>        <span class="hljs-comment"># imageArray = ([img,imgThres],</span><br>        <span class="hljs-comment">#           [imgContour,imgWarped])</span><br>        imageArray = ([imgContour, imgWarped])<br>        cv2.imshow(<span class="hljs-string">&quot;ImageWarped&quot;</span>, imgWarped)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-comment"># imageArray = ([img, imgThres],</span><br>        <span class="hljs-comment">#               [img, img])</span><br>        imageArray = ([imgContour, img])<br><br>    stackedImages = stackImages(<span class="hljs-number">0.6</span>, imageArray)<br>    cv2.imshow(<span class="hljs-string">&quot;WorkFlow&quot;</span>, stackedImages)<br><br>    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xFF</span> == <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;q&#x27;</span>):<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<h2 id="11-2-project2-document-scanner"><a href="#11-2-project2-document-scanner" class="headerlink" title="11.2 project2-document scanner"></a>11.2 project2-document scanner</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>widthImg = <span class="hljs-number">540</span><br>heightImg = <span class="hljs-number">640</span><br><br>cap = cv2.VideoCapture(<span class="hljs-number">0</span>)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">10</span>, <span class="hljs-number">150</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">preProcessing</span>(<span class="hljs-params">img</span>):<br>    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br>    imgBlur = cv2.GaussianBlur(imgGray, (<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), <span class="hljs-number">1</span>)<br>    imgCanny = cv2.Canny(imgBlur, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)<br>    kernel = np.ones((<span class="hljs-number">5</span>, <span class="hljs-number">5</span>))<br>    imgDial = cv2.dilate(imgCanny, kernel, iterations=<span class="hljs-number">2</span>)<br>    imgThres = cv2.erode(imgDial, kernel, iterations=<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> imgThres<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getContours</span>(<span class="hljs-params">img</span>):<br>    biggest = np.array([])<br>    maxArea = <span class="hljs-number">0</span><br>    contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)<br>    <span class="hljs-keyword">for</span> cnt <span class="hljs-keyword">in</span> contours:<br>        area = cv2.contourArea(cnt)<br>        <span class="hljs-keyword">if</span> area &gt; <span class="hljs-number">5000</span>:<br>            <span class="hljs-comment"># cv2.drawContours(imgContour, cnt, -1, (255, 0, 0), 3)</span><br>            peri = cv2.arcLength(cnt, <span class="hljs-literal">True</span>)<br>            approx = cv2.approxPolyDP(cnt, <span class="hljs-number">0.02</span> * peri, <span class="hljs-literal">True</span>)<br>            <span class="hljs-keyword">if</span> area &gt; maxArea <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(approx) == <span class="hljs-number">4</span>:<br>                biggest = approx<br>                maxArea = area<br>    cv2.drawContours(imgContour, biggest, -<span class="hljs-number">1</span>, (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-number">20</span>)<br>    <span class="hljs-keyword">return</span> biggest<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">reorder</span>(<span class="hljs-params">myPoints</span>):<br>    myPoints = myPoints.reshape((<span class="hljs-number">4</span>, <span class="hljs-number">2</span>))<br>    myPointsNew = np.zeros((<span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>), np.int32)<br>    add = myPoints.<span class="hljs-built_in">sum</span>(<span class="hljs-number">1</span>)<br>    <span class="hljs-comment"># print(&quot;add&quot;, add)</span><br>    myPointsNew[<span class="hljs-number">0</span>] = myPoints[np.argmin(add)]<br>    myPointsNew[<span class="hljs-number">3</span>] = myPoints[np.argmax(add)]<br>    diff = np.diff(myPoints, axis=<span class="hljs-number">1</span>)<br>    myPointsNew[<span class="hljs-number">1</span>] = myPoints[np.argmin(diff)]<br>    myPointsNew[<span class="hljs-number">2</span>] = myPoints[np.argmax(diff)]<br>    <span class="hljs-comment"># print(&quot;NewPoints&quot;,myPointsNew)</span><br>    <span class="hljs-keyword">return</span> myPointsNew<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">getWarp</span>(<span class="hljs-params">img, biggest</span>):<br>    biggest = reorder(biggest)<br>    pts1 = np.float32(biggest)<br>    pts2 = np.float32([[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], [widthImg, <span class="hljs-number">0</span>], [<span class="hljs-number">0</span>, heightImg], [widthImg, heightImg]])<br>    matrix = cv2.getPerspectiveTransform(pts1, pts2)<br>    imgOutput = cv2.warpPerspective(img, matrix, (widthImg, heightImg))<br><br>    imgCropped = imgOutput[<span class="hljs-number">20</span>:imgOutput.shape[<span class="hljs-number">0</span>] - <span class="hljs-number">20</span>, <span class="hljs-number">20</span>:imgOutput.shape[<span class="hljs-number">1</span>] - <span class="hljs-number">20</span>]<br>    imgCropped = cv2.resize(imgCropped, (widthImg, heightImg))<br><br>    <span class="hljs-keyword">return</span> imgCropped<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stackImages</span>(<span class="hljs-params">scale, imgArray</span>):<br>    rows = <span class="hljs-built_in">len</span>(imgArray)<br>    cols = <span class="hljs-built_in">len</span>(imgArray[<span class="hljs-number">0</span>])<br>    rowsAvailable = <span class="hljs-built_in">isinstance</span>(imgArray[<span class="hljs-number">0</span>], <span class="hljs-built_in">list</span>)<br>    width = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>]<br>    height = imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">if</span> rowsAvailable:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, cols):<br>                <span class="hljs-keyword">if</span> imgArray[x][y].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">else</span>:<br>                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]),<br>                                                <span class="hljs-literal">None</span>, scale, scale)<br>                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x][y].shape) == <span class="hljs-number">2</span>: imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)<br>        imageBlank = np.zeros((height, width, <span class="hljs-number">3</span>), np.uint8)<br>        hor = [imageBlank] * rows<br>        hor_con = [imageBlank] * rows<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            hor[x] = np.hstack(imgArray[x])<br>        ver = np.vstack(hor)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, rows):<br>            <span class="hljs-keyword">if</span> imgArray[x].shape[:<span class="hljs-number">2</span>] == imgArray[<span class="hljs-number">0</span>].shape[:<span class="hljs-number">2</span>]:<br>                imgArray[x] = cv2.resize(imgArray[x], (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">else</span>:<br>                imgArray[x] = cv2.resize(imgArray[x], (imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">1</span>], imgArray[<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]), <span class="hljs-literal">None</span>, scale, scale)<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(imgArray[x].shape) == <span class="hljs-number">2</span>: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)<br>        hor = np.hstack(imgArray)<br>        ver = hor<br>    <span class="hljs-keyword">return</span> ver<br><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    success, img = cap.read()<br>    img = cv2.resize(img, (widthImg, heightImg))<br>    imgContour = img.copy()<br><br>    imgThres = preProcessing(img)<br>    biggest = getContours(imgThres)<br>    <span class="hljs-keyword">if</span> biggest.size != <span class="hljs-number">0</span>:<br>        imgWarped = getWarp(img, biggest)<br>        <span class="hljs-comment"># imageArray = ([img,imgThres],</span><br>        <span class="hljs-comment">#           [imgContour,imgWarped])</span><br>        imageArray = ([imgContour, imgWarped])<br>        cv2.imshow(<span class="hljs-string">&quot;ImageWarped&quot;</span>, imgWarped)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-comment"># imageArray = ([img, imgThres],</span><br>        <span class="hljs-comment">#               [img, img])</span><br>        imageArray = ([imgContour, img])<br><br>    stackedImages = stackImages(<span class="hljs-number">0.6</span>, imageArray)<br>    cv2.imshow(<span class="hljs-string">&quot;WorkFlow&quot;</span>, stackedImages)<br><br>    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xFF</span> == <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;q&#x27;</span>):<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<h2 id="12-1-project3-number-plate-direction"><a href="#12-1-project3-number-plate-direction" class="headerlink" title="12.1 project3-number plate direction"></a>12.1 project3-number plate direction</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><br>frameWidth = <span class="hljs-number">640</span><br>frameHeight = <span class="hljs-number">480</span><br>nPlateCascade = cv2.CascadeClassifier(<span class="hljs-string">&quot;Resources/haarcascade_russian_plate_number.xml&quot;</span>)<br>minArea = <span class="hljs-number">200</span><br>color = (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>)<br>count = <span class="hljs-number">0</span><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    img = cv2.imread(<span class="hljs-string">&quot;Resources/p1.jpg&quot;</span>)<br>    <span class="hljs-comment"># img = cv2.imread(&quot;Resources/p2.jpg&quot;)</span><br>    <span class="hljs-comment"># img = cv2.imread(&quot;Resources/p3.jpg&quot;)</span><br>    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br>    numberPlates = nPlateCascade.detectMultiScale(imgGray, <span class="hljs-number">1.1</span>, <span class="hljs-number">10</span>)<br>    <span class="hljs-keyword">for</span> (x, y, w, h) <span class="hljs-keyword">in</span> numberPlates:<br>        area = w * h<br>        <span class="hljs-keyword">if</span> area &gt; minArea:<br>            cv2.rectangle(img, (x, y), (x + w, y + h), (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>), <span class="hljs-number">2</span>)<br>            cv2.putText(img, <span class="hljs-string">&quot;Number Plate&quot;</span>, (x, y - <span class="hljs-number">5</span>),<br>                        cv2.FONT_HERSHEY_COMPLEX_SMALL, <span class="hljs-number">1</span>, color, <span class="hljs-number">2</span>)<br>            imgRoi = img[y:y + h, x:x + w]<br>            cv2.imshow(<span class="hljs-string">&quot;ROI&quot;</span>, imgRoi)<br><br>    cv2.imshow(<span class="hljs-string">&quot;Result&quot;</span>, img)<br><br>    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xFF</span> == <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;s&#x27;</span>):<br>        cv2.imwrite(<span class="hljs-string">&quot;Resources/Scanned/NoPlate_&quot;</span> + <span class="hljs-built_in">str</span>(count) + <span class="hljs-string">&quot;.jpg&quot;</span>, imgRoi)<br>        cv2.rectangle(img, (<span class="hljs-number">0</span>, <span class="hljs-number">200</span>), (<span class="hljs-number">640</span>, <span class="hljs-number">300</span>), (<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), cv2.FILLED)<br>        cv2.putText(img, <span class="hljs-string">&quot;Scan Saved&quot;</span>, (<span class="hljs-number">150</span>, <span class="hljs-number">265</span>), cv2.FONT_HERSHEY_DUPLEX,<br>                    <span class="hljs-number">2</span>, (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>), <span class="hljs-number">2</span>)<br>        cv2.imshow(<span class="hljs-string">&quot;Result&quot;</span>, img)<br>        cv2.waitKey(<span class="hljs-number">500</span>)<br>        count += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h2 id="12-2-project3-number-plate-direction"><a href="#12-2-project3-number-plate-direction" class="headerlink" title="12.2 project3-number plate direction"></a>12.2 project3-number plate direction</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><br>frameWidth = <span class="hljs-number">640</span><br>frameHeight = <span class="hljs-number">480</span><br>nPlateCascade = cv2.CascadeClassifier(<span class="hljs-string">&quot;Resources/haarcascade_russian_plate_number.xml&quot;</span>)<br>minArea = <span class="hljs-number">200</span><br>color = (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>)<br><br>cap = cv2.VideoCapture(<span class="hljs-number">0</span>)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">3</span>, frameWidth)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">4</span>, frameHeight)<br>cap.<span class="hljs-built_in">set</span>(<span class="hljs-number">10</span>, <span class="hljs-number">150</span>)<br>count = <span class="hljs-number">0</span><br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    success, img = cap.read()<br>    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br>    numberPlates = nPlateCascade.detectMultiScale(imgGray, <span class="hljs-number">1.1</span>, <span class="hljs-number">10</span>)<br>    <span class="hljs-keyword">for</span> (x, y, w, h) <span class="hljs-keyword">in</span> numberPlates:<br>        area = w * h<br>        <span class="hljs-keyword">if</span> area &gt; minArea:<br>            cv2.rectangle(img, (x, y), (x + w, y + h), (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>), <span class="hljs-number">2</span>)<br>            cv2.putText(img, <span class="hljs-string">&quot;Number Plate&quot;</span>, (x, y - <span class="hljs-number">5</span>),<br>                        cv2.FONT_HERSHEY_COMPLEX_SMALL, <span class="hljs-number">1</span>, color, <span class="hljs-number">2</span>)<br>            imgRoi = img[y:y + h, x:x + w]<br>            cv2.imshow(<span class="hljs-string">&quot;ROI&quot;</span>, imgRoi)<br><br>    cv2.imshow(<span class="hljs-string">&quot;Result&quot;</span>, img)<br><br>    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>) &amp; <span class="hljs-number">0xFF</span> == <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;s&#x27;</span>):<br>        cv2.imwrite(<span class="hljs-string">&quot;Resources/Scanned/NoPlate_&quot;</span> + <span class="hljs-built_in">str</span>(count) + <span class="hljs-string">&quot;.jpg&quot;</span>, imgRoi)<br>        cv2.rectangle(img, (<span class="hljs-number">0</span>, <span class="hljs-number">200</span>), (<span class="hljs-number">640</span>, <span class="hljs-number">300</span>), (<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), cv2.FILLED)<br>        cv2.putText(img, <span class="hljs-string">&quot;Scan Saved&quot;</span>, (<span class="hljs-number">150</span>, <span class="hljs-number">265</span>), cv2.FONT_HERSHEY_DUPLEX,<br>                    <span class="hljs-number">2</span>, (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>), <span class="hljs-number">2</span>)<br>        cv2.imshow(<span class="hljs-string">&quot;Result&quot;</span>, img)<br>        cv2.waitKey(<span class="hljs-number">500</span>)<br>        count += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/opencv/" class="category-chain-item">opencv</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/opencv/">#opencv</a>
+      
+        <a href="/tags/python/">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>study opencv -1</div>
+      <div>http://example.com/2022/02/10/opencv/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Panjose</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月10日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/10/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-none d-lg-block col-lg-2">
+      
+  <div class="toc-container" id="toc-ctn" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+  <div class="footer-inner">
+    
+      <div class="footer-content">
+         <div class="copyright"> © <span itemprop="copyrightYear">2022</span> <span class="with-love"><i class="fa fa-heart"></i> </span> <span class="author" itemprop="copyrightHolder">Panjose</span> </div> 友情链接： <a href="https://www.luogu.com.cn/" target="_blank">洛谷</a><span style="margin:0 3px">/</span><a href="https://www.luogu.com.cn/blog/panjose/" target="_blank">洛谷博客</a><span style="margin:0 3px">/</span><a href="http://codeforces.com/" target="_blank">codeforces</a><span style="margin:0 3px">/</span><a href="https://www.spoj.com/" target="_blank">Sphere online judge</a> <div id="me">如有问题请私信panjose@pjoi.onexmail.com</div> 
+      </div>
+    
+    
+    
+    
+  </div>
+</footer>
+
+
+
+
+
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+  
+    <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace(/(LIVECODESERVER|NONE)/, CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+  
+    
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+  
+    
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+  
+    <script>Fluid.plugins.imageCaption();</script>
+  
+    <script  src="/js/local-search.js" ></script>
+  
+  
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+  <script type="text/javascript">var a_idx=0;jQuery(document).ready(function(d){d("body").click(function(a){var o=new Array("❤富强❤","❤民主❤","❤文明❤","❤和谐❤","❤自由❤","❤平等❤","❤公正❤","❤法治❤","❤爱国❤","❤敬业❤","❤诚信❤","❤友善❤"),n=d("<span></span>").text(o[a_idx]);a_idx=(a_idx+1)%o.length;var t=a.pageX,e=a.pageY;n.css({"z-index":1e69,top:e-20,left:t,position:"absolute","font-weight":"bold",color:"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}),d("body").append(n),n.animate({top:e-180,opacity:0},1500,function(){n.remove()})})})</script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  <script src="//code.tidio.co/lxyrov2rpgnobv6lljbjmn60ixgcdhcu.js" async></script>
+</body>
+</html>
